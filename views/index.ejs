@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Cameras streamer</title>
+		<link rel="stylesheet" href="design.css" />
+	</head>
+
+	<body>
+		<!-- Variables from server -->
+		<div id="_ServerVariables">
+			<input type="hidden" data-title="port" value="<%= data.port %>" />
+			
+			<script src="readVariables.js"></script>
+		</div>
+		
+		<!-- Page -->
+		<h1>Cameras streamer</h1>
+		
+		<!-- Camera selection -->
+		<ul id="CameraList">
+			<li class="button">
+				<input type="button" value="Open" onclick="openCameras()"/>
+				<input type="button" value="Launch" onclick="askLaunchCameras()" disabled />
+				<!-- filled by script -->
+			</li>
+			
+		</ul>
+		
+		<!-- Videos -->
+		<div id="Video">
+			<div id="Preview">
+				<h2>Preview</h2>
+				<ul class="VideoList">
+					<!-- filled by script -->
+				</ul>
+			</div>
+			
+			<div id="Received">
+				<h2>Received</h2>
+				<ul class="VideoList">
+					<!-- filled by script -->
+				</ul>
+			</div>
+		</div>
+		
+		<!-- Popups -->
+		<div id="RequestWait">
+			<p class="message">Currently calling the target. Please wait..</p>
+		</div>
+		
+		<div id="PromptRequest">
+			<div class="message">
+				<p>
+					Invitation to begin streaming:
+				</p>
+			
+				<input type="button" class="btnAccept" value="Accept" onclick="answerRequest(Request.Accepted)"/>
+				<input type="button" class="btnRefuse" value="Refuse" onclick="answerRequest(Request.Refused)" />
+			</div>
+		</div>
+
+		<!-- Scripts -->
+		<script src="webrtc.js"></script>
+		<script src="webrtc_multiple.js"></script>
+
+	</body>
+</html>

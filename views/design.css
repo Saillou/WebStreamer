@@ -1,0 +1,160 @@
+body {
+	color:rgb(230,230,230);
+	background:rgb(40,40,43);
+}
+
+h1 {
+	text-align:center;
+}
+
+#_ServerVariables {
+	display:none;
+}
+
+/* Button */
+input[type="button"] {
+	color: rgb(40,40,43);
+	padding: 8px 15px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	text-align: center;
+	background-color: #eeaa33;
+}
+input[type="button"]:hover {
+	background-color: #ffbb33;
+	color: black;
+}
+input[type="button"]:disabled {
+	background:rgb(120,120,125);
+	font-style:italic;
+}
+
+input[type="button"].btnAccept {
+	background-color: #99ee33;
+}
+input[type="button"].btnAccept:hover {
+	background-color: #88ff22;
+}
+input[type="button"].btnRefuse {
+	background-color: #cc3355;
+}
+input[type="button"].btnRefuse:hover {
+	background-color: #dd2244;
+}
+
+
+/* Camera list */
+#CameraList {
+	display:flex;
+	align-items:baseline;
+	list-style-type:none;
+	border:1px solid rgb(230,230,230);
+	padding:0px;
+	background:rgb(60,60,63);
+	margin:0;
+}
+#CameraList li {
+	height:100%;
+	border-right:1px solid rgb(230,230,230);
+	padding:15px;
+	background:rgb(80,80,83);
+}
+#CameraList .button {
+	border-right:none;
+	background:rgb(60,60,63);
+	order:99; /* End of the list */
+}
+
+#CameraList input[type="button"] {
+	color: rgb(40,40,43);
+	padding: 8px 15px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	text-align: center;
+	background-color: #eeaa33;
+}
+#CameraList input[type="button"]:hover {
+	background-color: #ffbb33;
+	color: black;
+}
+#CameraList input[type="button"]:disabled {
+	background:rgb(120,120,125);
+	font-style:italic;
+}
+
+/* Video */
+#Video {
+	display:flex;
+	align-items: flex-start ;
+	justify-content: center;	
+	margin-top:30px;
+}
+#Video h2 {
+	margin-top:10px;
+	margin-bottom:0;
+	text-align:center;
+}
+
+
+/* Video list */
+#Preview {
+	padding:7px;
+	border-right:1px solid rgb(230,230,230);
+	flex-shrink:1;
+}
+#Received {
+	padding:7px;
+	flex-shrink:1;
+}
+
+.VideoList {
+	display:flex;
+	align-items: flex-end;
+	justify-content: center;
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+.VideoList li {
+	flex-shrink:1;
+}
+.VideoList li h3 {
+	text-align:center;
+}
+.VideoList li video {
+	width:100%;
+}
+
+/* Popup */
+#RequestWait {
+	display:none;
+	position:absolute; top:0; left:0;
+	
+	width:100%;
+	height:100%;
+	background:rgba(200,200,200,0.8);
+	
+	align-items: center;
+	justify-content: center;	
+}
+
+.message {
+	text-align:center;
+	font-size:1.5em;
+	font-weight:500;
+	color:rgb(40,40,42);
+}
+
+#PromptRequest {
+	display:none;
+	position:absolute; top:0; left:0;
+	
+	width:100%;
+	height:100%;
+	background:rgba(200,200,200,0.8);
+	
+	align-items: center;
+	justify-content: center;		
+}

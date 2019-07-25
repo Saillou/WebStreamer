@@ -1,0 +1,8 @@
+{
+  "name": "Webcam streaming",
+  "description": "Stream of webcam",
+  "repository": "https://git.heroku.com/app2493.git",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
