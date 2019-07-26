@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Cameras streamer</title>
+		<link rel="stylesheet" href="design.css" />
+	</head>
+
+	<body>
+		<!-- Variables from server -->
+		<div id="_ServerVariables">
+<% 
+	if(typeof data != 'undefined') {
+		for(key in data) { 
+%>			<input type="hidden" data-title="<%= key %>" value="<%= data[key] %>" /> 
+<% 
+		} 
+	}
+%>			
+			<script src="readVariables.js"></script>
+		</div>
+		
+		<!-- Page -->
+		<h1>Cameras streamer</h1>
+		<div id="RequestWait" style="display:flex">
+			<p class="message">
+				2 Clients are already connected. Please retry later.
+			</p>
+		</div>
+
+	</body>
+</html>

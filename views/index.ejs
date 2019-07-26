@@ -9,22 +9,46 @@
 	<body>
 		<!-- Variables from server -->
 		<div id="_ServerVariables">
-			<input type="hidden" data-title="port" value="<%= data.port %>" />
-			
+<% 
+	for(key in data) { 
+%>			<input type="hidden" data-title="<%= key %>" value="<%= data[key] %>" /> 
+<% 
+	} 
+%>			
 			<script src="readVariables.js"></script>
 		</div>
 		
 		<!-- Page -->
 		<h1>Cameras streamer</h1>
+		<p>
+			<strong>My id: </strong> <span id="_myId"></span> 
+			<br/>
+			<strong>Peer id: </strong><span id="_peerId"></span>
+		</p>
 		
 		<!-- Camera selection -->
 		<ul id="CameraList">
 			<li class="button">
 				<input type="button" value="Open" onclick="openCameras()"/>
 				<input type="button" value="Launch" onclick="askLaunchCameras()" disabled />
-				<!-- filled by script -->
 			</li>
 			
+			<!-- filled by script -->
+			<!--
+			
+			<li class="camera"> 
+				<label>Camera 1</label> 
+				<input type="checkbox" /> 
+				<input type="hidden" data-title="deviceId" value="deviceId" />
+				<ul class="FormatList">
+					<li><input type="radio" name="format" value="0" /> <label>320x240</label> </li> 
+					<li><input type="radio" name="format" value="0" /> <label>320x240</label> </li> 
+					<li><input type="radio" name="format" value="0" /> <label>320x240</label> </li> 
+					<li><input type="radio" name="format" value="0" /> <label>320x240</label> </li> 
+				</ul> 
+			</li>  
+			
+			 -->		
 		</ul>
 		
 		<!-- Videos -->
@@ -33,13 +57,29 @@
 				<h2>Preview</h2>
 				<ul class="VideoList">
 					<!-- filled by script -->
+					<!--
+					
+					<li class="videoPreview">
+						<h3>Camera 1</h3>
+						<video autoplay></video>
+					</li>
+					
+					-->
 				</ul>
 			</div>
 			
 			<div id="Received">
 				<h2>Received</h2>
 				<ul class="VideoList">
-					<!-- filled by script -->
+					<!-- filled by script  -->
+					<!--
+					
+					<li class="videoReceived">
+						<h3>Camera 1</h3>
+						<video autoplay></video>
+					</li>
+					
+					-->
 				</ul>
 			</div>
 		</div>

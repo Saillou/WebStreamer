@@ -47,15 +47,13 @@ input[type="button"].btnRefuse:hover {
 /* Camera list */
 #CameraList {
 	display:flex;
-	align-items:baseline;
+	align-items:stretch;
 	list-style-type:none;
 	border:1px solid rgb(230,230,230);
 	padding:0px;
 	background:rgb(60,60,63);
-	margin:0;
 }
-#CameraList li {
-	height:100%;
+#CameraList .camera {
 	border-right:1px solid rgb(230,230,230);
 	padding:15px;
 	background:rgb(80,80,83);
@@ -64,6 +62,9 @@ input[type="button"].btnRefuse:hover {
 	border-right:none;
 	background:rgb(60,60,63);
 	order:99; /* End of the list */
+	padding-left:15px;
+	align-self:center;
+	display:flex;
 }
 
 #CameraList input[type="button"] {
@@ -82,6 +83,17 @@ input[type="button"].btnRefuse:hover {
 #CameraList input[type="button"]:disabled {
 	background:rgb(120,120,125);
 	font-style:italic;
+	cursor: default;
+}
+
+.FormatList {
+	margin:0;
+	padding:0;	
+	list-style-type:none;
+}
+.FormatList li {
+	margin:0;
+	padding:0;
 }
 
 /* Video */
