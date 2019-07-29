@@ -13,7 +13,7 @@ NodeJs application, using WebSocket, Express and WebRTC to create a Web Peer to 
 	https://nodejs.org/en/download/
 	(include npm 6.x)
 	
-Add node and npm to your <quote>PATH</quote>
+Add node and npm to your command $PATH
 	
 ### Launch server
 
@@ -24,11 +24,32 @@ Add node and npm to your <quote>PATH</quote>
 	# Download source
 	git clone https://github.com/Saillou/WebStreamer.git
 	
-	# Go to sources  and install dependencies
+	# Go to sources and install dependencies
 	cd WebStreamer
 	npm update
 	
-	# Launch server (on port 80, http://localhost/)
+	# Launch server on port 80, i.e. http://localhost/
 	node server.js
 
-Content
+
+### Client
+To see the results:
+	Open *twice* your favorite browser (not internet explorer v6..) at http://localhost/.
+	
+You shold see in the top left corner:
+	My id: [UUID]
+	Peer id: [UUID]
+
+Then:
+	> Select the medias to be shared. (Checkbox)
+	> Open. (PushButton)
+	
+	#When both clients are done
+	> Launch. (PushButton)
+	
+To change the parameters:
+	> Refresh (F5 or Ctrl+R) both clients.
+	> Re-itere the previous actions.
+	
+## 2 - How to deploy on the World Wide Web - Heroku solution
+Pry
