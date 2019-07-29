@@ -11,8 +11,9 @@ NodeJs application, using WebSocket, Express and WebRTC to create a Web Peer to 
 ### NodeJs and Npm
 
 	https://nodejs.org/en/download/
-	
 	(include npm 6.x)
+	
+Add node and npm to your <quote>PATH</quote>
 	
 ### Launch server
 
@@ -23,9 +24,11 @@ NodeJs application, using WebSocket, Express and WebRTC to create a Web Peer to 
 	# Download source
 	git clone https://github.com/Saillou/WebStreamer.git
 	
-	# Go to sources 
+	# Go to sources  and install dependencies
 	cd WebStreamer
+	npm update
+	
+	# Launch server (on port 80, http://localhost/)
 	node server.js
-
 
 Content
