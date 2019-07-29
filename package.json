@@ -1,7 +1,7 @@
 {
-  "name": "app2493",
+  "name": "webstreamer_saillou",
   "version": "1.0.0",
-  "description": "",
+  "description": "NodeJs application, using WebSocket, Express and WebRTC to create a Web Peer to Peer Multimedia Streaming platform.",
   "main": "server.js",
   "dependencies": {
     "ejs": "^2.6.2",
@@ -15,6 +15,14 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Saillou",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saillou/WebStreamer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Saillou/WebStreamer/issues"
+  },
+  "homepage": "https://github.com/Saillou/WebStreamer#readme"
 }
