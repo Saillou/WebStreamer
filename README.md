@@ -48,7 +48,8 @@ Then:
 	> Select the medias to be shared. (Checkbox)
 	> Open. (PushButton)
 	
-	#When both clients are done
+When both clients are done:
+
 	> Launch. (PushButton)
 	
 To change the parameters:
