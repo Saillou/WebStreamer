@@ -67,8 +67,9 @@ Choose "Sign Up for Free" on https://www.heroku.com/.
 
 Install heroku Command Line Interface (CLI).
 
-Clone this git repersitory on your computer
+Then
 
+	# Clone this git repersitory on your computer
 	git clone https://github.com/Saillou/WebStreamer.git
 	
 Create an Heroku app. (Limited at 5 for the free version).
