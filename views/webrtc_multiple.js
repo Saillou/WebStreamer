@@ -9,6 +9,11 @@ const Emitter = {
 	Sender 	: 1,
 	Receiver	: 2,
 };
+const Gui = {
+	Auto		: 1,
+	BlockAll	: 2,
+	OpenAll	: 3
+};
 const Request = {
 	Accepted 	: 1,
 	Refused		: 2,	
@@ -42,7 +47,7 @@ var receivedList = {
 	elts	: [],	
 }
 
-// Object
+// Objects
 class CameraDescription  {	
 	// Constructor
 	constructor(mediaDevice_, checkbox_, formatUl_) {
@@ -85,7 +90,34 @@ class CameraDescription  {
 	getId() {
 		return this.mediaDevice.deviceId;
 	}
-}
+};
+
+class MicrophoneDescription  {	
+	// Constructor
+	constructor(mediaDevice_, checkbox_) {
+		this.mediaDevice 	= mediaDevice_;
+		this.checkbox 		= checkbox_;
+	}
+	
+	getConstraints() {
+		return {
+			video:false,
+			audio:true
+		};
+	}
+	getSelected() {
+		return this.checkbox.checked;
+	}
+	getDevice() {
+		return this.mediaDevice;
+	}
+	getName() {
+		return this.mediaDevice.label;
+	}
+	getId() {
+		return this.mediaDevice.deviceId;
+	}
+};
 
 // WebSocket and P2P
 var ws 	= new WebSocket(location.origin.replace(/^http/, 'ws'), 'echo-protocol');
@@ -105,17 +137,17 @@ pcR.ontrack 			= onTrack;
 function createGui() {
 	navigator.mediaDevices.enumerateDevices().then(devices => {
 		for(let device of devices) {
-			if(device.kind != "videoinput")
-				continue;
-			
-			createCamera(device); 
+			if(device.kind == "videoinput")
+				createDeviceIn(device, "video"); 
+			if(device.kind == "audioinput")
+				createDeviceIn(device, "audio");
 		}
 		
 		pageReady();
 	});
 }
 
-function createCamera(device) {
+function createDeviceIn(device, kind) {
 /* Example:
 	<li class="camera">
 		<label>Camera 1</label> 
@@ -152,34 +184,40 @@ function createCamera(device) {
 	li.appendChild(deviceId);
 	li.appendChild(ul);
 	
-	// Format
-	for(fmtName in Format) {
-		let li_fmt = document.createElement('li');
-		let in_fmt = document.createElement('input');
-		let lbl_fmt = document.createElement('label');
-		
-		in_fmt.type = "radio";
-		in_fmt.name = "format_"+device.deviceId;
-		in_fmt.value = fmtName;
-		if(fmtName == "Vga")
-			in_fmt.checked = true;
-		
-		lbl_fmt.innerHTML = Format[fmtName].w + 'x' + Format[fmtName].h;
-		
-		li_fmt.appendChild(in_fmt);
-		li_fmt.appendChild(lbl_fmt);
-		ul.appendChild(li_fmt);
+	if(kind == "video") {
+		// Format
+		for(fmtName in Format) {
+			let li_fmt = document.createElement('li');
+			let in_fmt = document.createElement('input');
+			let lbl_fmt = document.createElement('label');
+			
+			in_fmt.type = "radio";
+			in_fmt.name = "format_"+device.deviceId;
+			in_fmt.value = fmtName;
+			if(fmtName == "Vga")
+				in_fmt.checked = true;
+			
+			lbl_fmt.innerHTML = Format[fmtName].w + 'x' + Format[fmtName].h;
+			
+			li_fmt.appendChild(in_fmt);
+			li_fmt.appendChild(lbl_fmt);
+			ul.appendChild(li_fmt);
+		}
 	}
 	
 	cameraList.dom.appendChild(li);
-	cameraList.elts.push(new CameraDescription(device, checkbox, ul));
+	
+	if(kind == "video")
+		cameraList.elts.push(new CameraDescription(device, checkbox, ul));
+	if(kind == "audio")
+		cameraList.elts.push(new MicrophoneDescription(device, checkbox));
 }
 
 function createVideoPreview(camera, stream) {
 /* Example:
 	<li class="videoPreview">
 		<h3>Camera 1</h3>
-		<video autoplay></video>
+		<video autoplay controls="true" muted></video>
 	</li>
 */	
 
@@ -191,6 +229,8 @@ function createVideoPreview(camera, stream) {
 	title.innerHTML 	= camera.label;
 	video.autoplay 	= true;
 	video.srcObject 	= stream;
+	video.controls 	= "true";
+	// video.muted		= "true";
 	
 	li.appendChild(title);
 	li.appendChild(video);
@@ -206,7 +246,7 @@ function createVideoReceived(stream) {
 /* Example:
 	<li class="videoReceived">
 		<h3>Camera 1</h3>
-		<video autoplay></video>
+		<video autoplay controls="true"></video>
 	</li>
 */	
 	let li 			= document.createElement('li');
@@ -217,6 +257,7 @@ function createVideoReceived(stream) {
 	title.innerHTML 	= 'Camera ' + (receivedList.elts.length+1);
 	video.autoplay 	= true;
 	video.srcObject 	= stream;
+	video.controls 	= "true";
 	
 	li.appendChild(title);
 	li.appendChild(video);
@@ -230,24 +271,23 @@ function createVideoReceived(stream) {
 
 // Open
 async function openCameras() {
-			
 	// Read the list
 	for(let cam of cameraList.elts) {	
 		if(!cam.getSelected())
 			continue;
 
-			try {
-				let stream = await navigator.mediaDevices.getUserMedia(cam.getConstraints());
-				createVideoPreview(cam.getDevice(), stream);
-				
-			} catch (reason) {
-				console.log("Can't open camera", cam.getName(), ':', reason);	
-			};
+		try {
+			let stream = await navigator.mediaDevices.getUserMedia(cam.getConstraints());
+			createVideoPreview(cam.getDevice(), stream);
+			
+		} catch (reason) {
+			console.log("Can't open device", cam.getName(), ':', reason);	
+		};
 	}
 	
 	// Camera can't change | Launch available
-	for(let input of cameraList.dom.getElementsByTagName('input'))
-		input.disabled = (input.value !== "Launch");
+	updateUUID();
+	adaptButtons();
 }
 
 
@@ -269,16 +309,14 @@ async function launchCameras() {
 	
 	// Answer (from sender)
 	pcS.createOffer().then(description => {
-		
 		// Set and broadcast offer
 		pcS.setLocalDescription(description).then(() => {
 			ws.send(JSON.stringify({'sdp': description, 'emitter': Emitter.Sender}));
 		});
 	});
 	
-	// Disable launch
-	for(let input of cameraList.dom.getElementsByTagName('input'))
-		input.disabled = true;
+	// Gui
+	adaptButtons(Gui.BlockAll);
 }
 
 async function answerRequest(result) {
@@ -373,15 +411,29 @@ function onTrack(track) {
 
 // Web socket connected and camera created
 function pageReady() {
-	// Camera can change | Launch unavailable
-	for(let input of cameraList.dom.getElementsByTagName('input'))
-		input.disabled = (input.value === "Launch");
-	
-	// UUIDs
 	updateUUID();
+	adaptButtons();
 }
 
 function updateUUID() {
 	document.getElementById('_myId').innerHTML	= uuid ? uuid : "Creating..";
 	document.getElementById('_peerId').innerHTML	= peerUuid ? peerUuid : "Waiting..";	
+}
+
+function adaptButtons(mode_) {
+	let mode = mode_ ? mode_ : Gui.Auto;
+	
+	if(mode == Gui.BlockAll || mode == Gui.OpenAll) {
+		for(let input of cameraList.dom.getElementsByTagName('input'))
+			input.disabled = (mode == Gui.BlockAll);		
+	}
+	else {
+		// Open () already ?
+		let wasOpened	= previewList.elts.length > 0;
+		let canLaunch		= wasOpened && peerUuid;
+		
+		for(let input of cameraList.dom.getElementsByTagName('input'))
+			input.disabled = wasOpened;		
+		document.getElementById('_launch').disabled =	!canLaunch;
+	}
 }

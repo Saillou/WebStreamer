@@ -139,6 +139,10 @@ input[type="button"].btnRefuse:hover {
 	width:100%;
 }
 
+.VideoPreview {
+	border:1px solid black;
+}
+
 /* Popup */
 #RequestWait {
 	display:none;

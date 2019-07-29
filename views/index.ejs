@@ -29,8 +29,8 @@
 		<!-- Camera selection -->
 		<ul id="CameraList">
 			<li class="button">
-				<input type="button" value="Open" onclick="openCameras()"/>
-				<input type="button" value="Launch" onclick="askLaunchCameras()" disabled />
+				<input type="button" value="Open" onclick="openCameras()" id="_open"/>
+				<input type="button" value="Launch" onclick="askLaunchCameras()" disabled id="_launch"/>
 			</li>
 			
 			<!-- filled by script -->
@@ -61,7 +61,7 @@
 					
 					<li class="videoPreview">
 						<h3>Camera 1</h3>
-						<video autoplay></video>
+						<video autoplay controls="true"></video>
 					</li>
 					
 					-->
@@ -76,7 +76,7 @@
 					
 					<li class="videoReceived">
 						<h3>Camera 1</h3>
-						<video autoplay></video>
+						<video autoplay controls="true"></video>
 					</li>
 					
 					-->
