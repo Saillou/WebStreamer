@@ -8,14 +8,14 @@ NodeJs application, using WebSocket, Express and WebRTC to create a Web Peer to 
 	Ws: 7.1.x
 	
 ## 1 - How to deploy on local
-### NodeJs and Npm
+### A - NodeJs and Npm
 
 	https://nodejs.org/en/download/
 	(include npm 6.x)
 	
 Add node and npm to your command $PATH
 	
-### Launch server
+### B - Launch server
 
 	# Create applications folder
 	mkdir WebApplications
@@ -32,7 +32,7 @@ Add node and npm to your command $PATH
 	node server.js
 
 
-### Client
+### C - Client
 
 To see the results:
 
@@ -59,4 +59,36 @@ To change the parameters:
 	
 ## 2 - How to deploy on the World Wide Web - Heroku solution
 
-Pry
+The solution described here use the free version of Heroku. It's interesting for test and development but may not be powerful enough for large scale business.
+
+### A - Heroku initialization
+
+Choose "Sign Up for Free" on https://www.heroku.com/.
+Install heroku Command Line Interface (CLI).
+
+Clone this git repersitory on your computer
+
+	git clone https://github.com/Saillou/WebStreamer.git
+	
+Create an Heroku app. (Limited at 5 for the free version).
+	# Go to your clone repersitory
+	cd WebStreamer
+	
+	# And create the app
+	heroku login
+	heroku create [app_name]
+	
+Now, upload your local app to heroku server
+	
+	git push heroku
+	
+Heroku will build the app and deploy it.
+
+### B - Usage and Management
+
+To see the server answer in real time:
+
+	heroku logs --tail
+	(Use ctrl+C) to stop
+	
+The application is accesible at https://[app_name].herokuapp.com/
