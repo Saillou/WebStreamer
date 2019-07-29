@@ -33,14 +33,18 @@ Add node and npm to your command $PATH
 
 
 ### Client
+
 To see the results:
+
 	Open *twice* your favorite browser (not internet explorer v6..) at http://localhost/.
 	
 You shold see in the top left corner:
+
 	My id: [UUID]
 	Peer id: [UUID]
 
 Then:
+
 	> Select the medias to be shared. (Checkbox)
 	> Open. (PushButton)
 	
@@ -48,8 +52,10 @@ Then:
 	> Launch. (PushButton)
 	
 To change the parameters:
+
 	> Refresh (F5 or Ctrl+R) both clients.
 	> Re-itere the previous actions.
 	
 ## 2 - How to deploy on the World Wide Web - Heroku solution
+
 Pry
