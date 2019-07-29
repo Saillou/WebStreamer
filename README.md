@@ -64,6 +64,7 @@ The solution described here use the free version of Heroku. It's interesting for
 ### A - Heroku initialization
 
 Choose "Sign Up for Free" on https://www.heroku.com/.
+
 Install heroku Command Line Interface (CLI).
 
 Clone this git repersitory on your computer
@@ -71,6 +72,7 @@ Clone this git repersitory on your computer
 	git clone https://github.com/Saillou/WebStreamer.git
 	
 Create an Heroku app. (Limited at 5 for the free version).
+
 	# Go to your clone repersitory
 	cd WebStreamer
 	
