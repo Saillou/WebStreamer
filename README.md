@@ -69,12 +69,12 @@ Install heroku Command Line Interface (CLI).
 
 Then
 
-	# Clone this git repersitory on your computer
+	# Clone this git repository on your computer
 	git clone https://github.com/Saillou/WebStreamer.git
 	
 Create an Heroku app. (Limited at 5 for the free version).
 
-	# Go to your clone repersitory
+	# Go to your cloned folder
 	cd WebStreamer
 	
 	# And create the app
@@ -89,9 +89,9 @@ Heroku will build the app and deploy it.
 
 ### B - Usage and Management
 
-To see the server answer in real time:
+To see the server answers (in real time):
 
 	heroku logs --tail
 	(Use ctrl+C) to stop
 	
-The application is accesible at https://[app_name].herokuapp.com/
+The application is accessible at https://[app_name].herokuapp.com/
