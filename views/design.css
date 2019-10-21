@@ -103,6 +103,22 @@ input[type="button"].btnRefuse:hover {
 	justify-content: center;	
 	margin-top:30px;
 }
+Video.rotated_X {
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+}
+Video.rotated_Y {
+    transform: rotateX(180deg);
+    -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+    -moz-transform:rotateX(180deg); /* Firefox */
+}
+Video.rotated_XY {
+    transform: rotateX(180deg) rotateY(180deg);
+    -webkit-transform:rotateX(180deg) rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateX(180deg) rotateY(180deg); /* Firefox */
+}
+
 #Video h2 {
 	margin-top:10px;
 	margin-bottom:0;

@@ -161,7 +161,7 @@ function createDeviceIn(device, kind) {
 */
 
 	let li 				= document.createElement('li');
-	let label 		= document.createElement('label');
+	let label 			= document.createElement('label');
 	let checkbox 	= document.createElement('input');
 	let deviceId 	= document.createElement('input');
 	let ul				= document.createElement('ul');
@@ -223,17 +223,77 @@ function createVideoPreview(camera, stream) {
 
 	let li 			= document.createElement('li');
 	let title 		= document.createElement('h3');
-	let video	= document.createElement('video');
+	let video		= document.createElement('video');
+	
+	/*
+		<form>
+			<input type="checkbox" value="mirror x" /> <label>Mirror x</label>
+			<input type="checkbox" value="mirror x" /> <label>Mirror x</label>
+		</form>
+	
+	*/
+	let form_param = document.createElement('form');
+	let form_param_mirror_x = document.createElement('input');
+	let form_label_mirror_x = document.createElement('label');
+	
+	let form_param_mirror_y = document.createElement('input');
+	let form_label_mirror_y = document.createElement('label');
+	
+	form_label_mirror_x.innerHTML = "Mirror X";
+	form_param_mirror_x.type = "checkbox";
+	form_param_mirror_x.value = "mX";
+	
+	form_label_mirror_y.innerHTML = "Mirror Y";
+	form_param_mirror_y.type = "checkbox";
+	form_param_mirror_y.value = "mY";
+	
+	form_param.appendChild(form_param_mirror_x);
+	form_param.appendChild(form_label_mirror_x);
+	
+	form_param.appendChild(form_param_mirror_y);	
+	form_param.appendChild(form_label_mirror_y);	
+	
+	// Add param events
+	form_param_mirror_x.onclick	= function() {
+		if(this.checked) {
+			if(video.className == 'rotated_Y')
+				 video.className = 'rotated_XY';
+			 else
+				 video.className = 'rotated_X';
+		}
+		else {
+			if(video.className == 'rotated_XY')
+				 video.className = 'rotated_Y';
+			 else
+				 video.className = '';			
+		}
+
+	};
+	form_param_mirror_y.onclick	= function() {
+		if(this.checked) {
+			if(video.className == 'rotated_X')
+				 video.className = 'rotated_XY';
+			 else
+				 video.className = 'rotated_Y';
+		}
+		else {
+			if(video.className == 'rotated_XY')
+				 video.className = 'rotated_X';
+			 else
+				 video.className = '';			
+		}
+	};
+	
 	
 	li.className 		= 'videoPreview';
 	title.innerHTML 	= camera.label;
 	video.autoplay 	= true;
 	video.srcObject 	= stream;
 	video.controls 	= "true";
-	// video.muted		= "true";
 	
 	li.appendChild(title);
 	li.appendChild(video);
+	li.appendChild(form_param);
 	
 	previewList.dom.appendChild(li);
 	previewList.elts.push({
@@ -253,6 +313,65 @@ function createVideoReceived(stream) {
 	let title 		= document.createElement('h3');
 	let video	= document.createElement('video');
 	
+	/*
+		<form>
+			<input type="checkbox" value="mirror x" /> <label>Mirror x</label>
+			<input type="checkbox" value="mirror x" /> <label>Mirror x</label>
+		</form>
+	
+	*/
+	let form_param = document.createElement('form');
+	let form_param_mirror_x = document.createElement('input');
+	let form_label_mirror_x = document.createElement('label');
+	
+	let form_param_mirror_y = document.createElement('input');
+	let form_label_mirror_y = document.createElement('label');
+	
+	form_label_mirror_x.innerHTML = "Mirror X";
+	form_param_mirror_x.type = "checkbox";
+	form_param_mirror_x.value = "mX";
+	
+	form_label_mirror_y.innerHTML = "Mirror Y";
+	form_param_mirror_y.type = "checkbox";
+	form_param_mirror_y.value = "mY";
+	
+	form_param.appendChild(form_param_mirror_x);
+	form_param.appendChild(form_label_mirror_x);
+	
+	form_param.appendChild(form_param_mirror_y);	
+	form_param.appendChild(form_label_mirror_y);	
+	
+	// Add param events
+	form_param_mirror_x.onclick	= function() {
+		if(this.checked) {
+			if(video.className == 'rotated_Y')
+				 video.className = 'rotated_XY';
+			 else
+				 video.className = 'rotated_X';
+		}
+		else {
+			if(video.className == 'rotated_XY')
+				 video.className = 'rotated_Y';
+			 else
+				 video.className = '';			
+		}
+
+	};
+	form_param_mirror_y.onclick	= function() {
+		if(this.checked) {
+			if(video.className == 'rotated_X')
+				 video.className = 'rotated_XY';
+			 else
+				 video.className = 'rotated_Y';
+		}
+		else {
+			if(video.className == 'rotated_XY')
+				 video.className = 'rotated_X';
+			 else
+				 video.className = '';			
+		}
+	};
+	
 	li.className 		= 'videoReceived';
 	title.innerHTML 	= 'Camera ' + (receivedList.elts.length+1);
 	video.autoplay 	= true;
@@ -261,6 +380,7 @@ function createVideoReceived(stream) {
 	
 	li.appendChild(title);
 	li.appendChild(video);
+	li.appendChild(form_param);
 	
 	receivedList.dom.appendChild(li);
 	receivedList.elts.push({
