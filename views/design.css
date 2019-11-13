@@ -107,16 +107,29 @@ Video.rotated_X {
     transform: rotateY(180deg);
     -webkit-transform:rotateY(180deg); /* Safari and Chrome */
     -moz-transform:rotateY(180deg); /* Firefox */
+	
+	margin: auto;
 }
 Video.rotated_Y {
     transform: rotateX(180deg);
     -webkit-transform:rotateX(180deg); /* Safari and Chrome */
     -moz-transform:rotateX(180deg); /* Firefox */
+	
+	margin: auto;
 }
 Video.rotated_XY {
     transform: rotateX(180deg) rotateY(180deg);
     -webkit-transform:rotateX(180deg) rotateY(180deg); /* Safari and Chrome */
     -moz-transform:rotateX(180deg) rotateY(180deg); /* Firefox */
+	
+	margin: auto;
+}
+Video.rotated_Z {
+    transform: rotateZ(270deg);
+    -webkit-transform:rotateZ(270deg); /* Safari and Chrome */
+    -moz-transform:rotateZ(270deg); /* Firefox */
+	
+	margin: 16% 0%; /* exchange width / height*/
 }
 
 #Video h2 {
