@@ -344,6 +344,9 @@ function createVideoReceived(stream) {
 	let form_param_mirror_y = document.createElement('input');
 	let form_label_mirror_y = document.createElement('label');
 	
+	let form_param_mirror_z = document.createElement('input');
+	let form_label_mirror_z = document.createElement('label');
+	
 	form_label_mirror_x.innerHTML = "Mirror X";
 	form_param_mirror_x.type = "checkbox";
 	form_param_mirror_x.value = "mX";
@@ -352,11 +355,18 @@ function createVideoReceived(stream) {
 	form_param_mirror_y.type = "checkbox";
 	form_param_mirror_y.value = "mY";
 	
+	form_label_mirror_z.innerHTML = "Mirror Z";
+	form_param_mirror_z.type = "checkbox";
+	form_param_mirror_z.value = "mZ";
+	
 	form_param.appendChild(form_param_mirror_x);
 	form_param.appendChild(form_label_mirror_x);
 	
 	form_param.appendChild(form_param_mirror_y);	
 	form_param.appendChild(form_label_mirror_y);	
+	
+	form_param.appendChild(form_param_mirror_z);	
+	form_param.appendChild(form_label_mirror_z);	
 	
 	// Add param events
 	form_param_mirror_x.onclick	= function() {
@@ -386,6 +396,15 @@ function createVideoReceived(stream) {
 				 video.className = 'rotated_X';
 			 else
 				 video.className = '';			
+		}
+	};
+	
+	form_param_mirror_z.onclick	= function() {
+		if(this.checked) {
+			video.className = 'rotated_Z';
+		}
+		else {
+			video.className = '';
 		}
 	};
 	
